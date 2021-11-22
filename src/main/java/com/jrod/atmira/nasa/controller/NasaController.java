@@ -4,6 +4,7 @@ import com.jrod.atmira.nasa.exception.ParamDaysNotFoundException;
 import com.jrod.atmira.nasa.exception.ParamDaysInvalidException;
 import com.jrod.atmira.nasa.model.AsteroidDTO;
 import com.jrod.atmira.nasa.service.NasaService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.List;
 /**
  * @author Jesús Rodríguez
  */
+@Slf4j
 @RestController
 @RequestMapping(NasaController.ASTEROID)
 public class NasaController {
@@ -31,8 +33,10 @@ public class NasaController {
             throws ParamDaysInvalidException, ParamDaysNotFoundException {
 
         if(days == null){
+            log.error("Days parameter not found");
             throw new ParamDaysNotFoundException();
         }else if(days < 1 || days > 7){
+            log.error("Invalid days {} parameter", days);
             throw new ParamDaysInvalidException("param: " + days);
         }
 
