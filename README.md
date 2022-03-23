@@ -1,4 +1,4 @@
-# Prueba técnica Atmira : Spring Boot
+# Prueba técnica : Spring Boot
 
 ## Description
 
